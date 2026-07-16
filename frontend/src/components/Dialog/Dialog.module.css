@@ -1,0 +1,45 @@
+.dialog {
+  background-color: #111;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0;
+  width: 40%;
+}
+.header {
+  align-items: center;
+  background-color: #333;
+  display: flex;
+  padding: 1rem;
+  position: relative;
+}
+.heading {
+  flex: 1;
+  font-size: 1.25rem;
+  text-align: center;
+}
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  position: absolute;
+  right: 1rem;
+}
+.body {
+  padding: 1rem 2rem;
+}
+@media screen and (max-width: 768px) {
+  .dialog {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .dialog {
+    height: 60vh;
+  }
+  .body {
+    padding: 1rem 1.5rem;
+    height: calc(60vh - 3.25rem);
+  }
+}

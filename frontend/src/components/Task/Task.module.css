@@ -1,0 +1,58 @@
+.task {
+  background-color: #333;
+  border-radius: 0.3rem;
+}
+.details p {
+  background-color: #222;
+  border-radius: 0 0 0.3rem 0.3rem;
+  font-size: 0.75rem;
+  padding: 1rem;
+}
+.details[open] .summary {
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+.summary {
+  --overflow-width: 0;
+  --animation-speed: 0s;
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  gap: 0.5rem;
+  height: 2rem;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.3rem;
+}
+.wrapper {
+  align-items: center;
+  container-type: inline-size;
+  display: flex;
+  flex: 1;
+  height: 2rem;
+  overflow-x: hidden;
+}
+.wrapper:nth-child(1) {
+  cursor: pointer;
+}
+.title {
+  min-width: 0;
+  white-space: nowrap;
+}
+.summary:hover .overflowing {
+  animation: scroll-text var(--animation-speed) linear infinite;
+}
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.completed {
+  background-color: #00ff00;
+}
+@keyframes scroll-text {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--overflow-width));
+  }
+}
