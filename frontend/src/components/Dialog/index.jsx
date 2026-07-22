@@ -1,9 +1,16 @@
-import { useEffect, useRef, use } from "react";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  closeDialog,
+  addTask,
+  editTask,
+} from "../../store/slices/tasks/taskSlice.js";
 import styles from "./Dialog.module.css";
-import taskContext from "../../context/TaskContext";
 import { FormTask } from "../FormTask/index.jsx";
-export function Dialog({ isOpen, onClose }) {
-  const { closeDialog, targetTask, addTask, editTask } = use(taskContext);
+export function Dialog() {
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.tasks.showDialog);
+  const targetTask = useSelector((state) => state.tasks.targetTask);
   const dialogRef = useRef(null);
   useEffect(() => {
     if (isOpen) {
@@ -13,12 +20,23 @@ export function Dialog({ isOpen, onClose }) {
     }
   }, [isOpen]);
   const handleFormSubmit = (formData) => {
+    const data = {
+      title: formData.get("title"),
+      type: formData.get("type"),
+      description:
+        formData.get("description") || "This task has no description.",
+    };
     if (targetTask) {
-      editTask(formData);
+      dispatch(
+        editTask({
+          id: targetTask.id,
+          ...data,
+        }),
+      );
     } else {
-      addTask(formData);
+      dispatch(addTask(data));
     }
-    closeDialog();
+    dispatch(closeDialog());
   };
   return (
     <>
@@ -27,7 +45,10 @@ export function Dialog({ isOpen, onClose }) {
           <h2 className={styles.heading}>
             {targetTask ? "Edit Task" : "Add Task"}
           </h2>
-          <button className={styles.btn} onClick={onClose}>
+          <button
+            className={styles.btn}
+            onClick={() => dispatch(closeDialog())}
+          >
             <i className="bi bi-x"></i>
           </button>
         </div>

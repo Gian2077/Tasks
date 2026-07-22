@@ -1,11 +1,19 @@
 import { use, useLayoutEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  openDialog,
+  toggleTask,
+  deleteTask,
+} from "../../store/slices/tasks/taskSlice.js";
 import styles from "./Task.module.css";
-import taskContext from "../../context/taskContext";
 import { ButtonTaskToggleStatus } from "../ButtonTaskToggleStatus/index.jsx";
 import { ButtonTaskEdit } from "../ButtonTaskEdit/index.jsx";
 import { ButtonTaskDelete } from "../ButtonTaskDelete/index.jsx";
 export function Task({ task }) {
-  const { openDialog, toggleTask, deleteTask } = use(taskContext);
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const showDialog = useSelector((state) => state.tasks.showDialog);
+  const targetTask = useSelector((state) => state.tasks.targetTask);
   const taskRef = useRef(null);
   const textRef = useRef(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -50,11 +58,11 @@ export function Task({ task }) {
             </div>
             <div className={styles.actions}>
               <ButtonTaskToggleStatus
-                onClick={() => toggleTask(task)}
+                onClick={() => dispatch(toggleTask(task))}
                 task={task}
               />
-              <ButtonTaskEdit onClick={() => openDialog(task)} />
-              <ButtonTaskDelete onClick={() => deleteTask(task)} />
+              <ButtonTaskEdit onClick={() => dispatch(openDialog(task))} />
+              <ButtonTaskDelete onClick={() => dispatch(deleteTask(task.id))} />
             </div>
           </summary>
           <p>{task.description}</p>
