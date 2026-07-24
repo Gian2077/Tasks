@@ -9,6 +9,7 @@ import styles from "./Task.module.css";
 import { ButtonTaskToggleStatus } from "../ButtonTaskToggleStatus/index.jsx";
 import { ButtonTaskEdit } from "../ButtonTaskEdit/index.jsx";
 import { ButtonTaskDelete } from "../ButtonTaskDelete/index.jsx";
+import { Steps } from "../Steps/index.jsx";
 export function Task({ task }) {
   const dispatch = useDispatch();
   const showDialog = useSelector((state) => state.tasks.showDialog);
@@ -65,6 +66,7 @@ export function Task({ task }) {
             </div>
           </summary>
           <p>{task.description}</p>
+          <Steps />
         </details>
       </li>
     </>
