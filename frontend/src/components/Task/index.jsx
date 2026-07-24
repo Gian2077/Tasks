@@ -11,7 +11,6 @@ import { ButtonTaskEdit } from "../ButtonTaskEdit/index.jsx";
 import { ButtonTaskDelete } from "../ButtonTaskDelete/index.jsx";
 export function Task({ task }) {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks.tasks);
   const showDialog = useSelector((state) => state.tasks.showDialog);
   const targetTask = useSelector((state) => state.tasks.targetTask);
   const taskRef = useRef(null);

@@ -53,14 +53,20 @@ const taskSlice = createSlice({
       const { DAY, DAY_WEEK, MONTH, YEAR } = action.payload;
       state.tasks = state.tasks.map((task) => {
         if (!task.completed) return task;
-        const date = new Date(task.completed);
-        const completedDay = date.getUTCDate();
-        const completedWeekday = date.getUTCDay();
-        const completedMonth = date.getMonth() + 1;
-        const completedYear = date.getFullYear();
+        const dateObject = new Date(task.dateCompleted);
+        const dayCompleted = Number(
+          task.dateCompleted.split("T")[0].split("-")[2],
+        );
+        const dayWeekCompleted = Number(dateObject.getUTCDay());
+        const monthCompleted = Number(
+          task.dateCompleted.split("T")[0].split("-")[1],
+        );
+        const yearCompleted = Number(
+          task.dateCompleted.split("T")[0].split("-")[0],
+        );
         switch (task.type) {
           case "Daily":
-            if (MONTH !== completedMonth || DAY > completedDay) {
+            if (MONTH !== monthCompleted || DAY > dayCompleted) {
               return {
                 ...task,
                 completed: false,
@@ -69,7 +75,13 @@ const taskSlice = createSlice({
             }
             break;
           case "Weekly":
-            if (DAY !== completedDay && DAY_WEEK === 0) {
+            if (DAY !== dayCompleted && DAY_WEEK === 0) {
+              return {
+                ...task,
+                completed: false,
+                dateCompleted: null,
+              };
+            } else if (DAY_WEEK < dayWeekCompleted) {
               return {
                 ...task,
                 completed: false,
@@ -78,7 +90,7 @@ const taskSlice = createSlice({
             }
             break;
           case "Monthly":
-            if (YEAR !== completedYear || MONTH > completedMonth) {
+            if (YEAR !== yearCompleted || MONTH > monthCompleted) {
               return {
                 ...task,
                 completed: false,
@@ -87,7 +99,7 @@ const taskSlice = createSlice({
             }
             break;
           case "Yearly":
-            if (YEAR !== completedYear) {
+            if (YEAR !== yearCompleted) {
               return {
                 ...task,
                 completed: false,
