@@ -1,0 +1,26 @@
+.li {
+  --overflow-width: 0;
+  --animation-speed: 0s;
+  align-items: center;
+  background-color: #222;
+  display: flex;
+  font-weight: 700;
+  font-size: 0.75rem;
+  gap: 0.5rem;
+  height: 2rem;
+  justify-content: space-between;
+  padding: 0 0.75rem;
+  border-radius: 1rem;
+}
+.wrapper {
+  align-items: center;
+  container-type: inline-size;
+  display: flex;
+  flex: 1;
+  height: 2rem;
+  overflow-x: hidden;
+}
+.i {
+  cursor: pointer;
+  color: #00ff00;
+}
