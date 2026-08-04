@@ -1,0 +1,17 @@
+.button {
+  align-self: center;
+  background-color: #222;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.25rem;
+  height: 2rem;
+  transition: 0.3s;
+  width: 2rem;
+}
+.button:hover,
+.button:focus {
+  background-color: #555;
+}

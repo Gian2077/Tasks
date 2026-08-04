@@ -93,7 +93,6 @@ const taskSlice = createSlice({
 export const {
   openDialog,
   closeDialog,
-  targetTask,
   addTask,
   toggleTask,
   completeTask,

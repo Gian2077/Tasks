@@ -5,8 +5,10 @@ import {
   addTask,
   editTask,
 } from "../../store/slices/tasks/taskSlice.js";
+import { addStep } from "../../store/slices/steps/stepSlice.js";
 import styles from "./Dialog.module.css";
 import { FormTask } from "../FormTask/index.jsx";
+import { FormStep } from "../FormStep/index.jsx";
 export function Dialog() {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.tasks.showDialog);
@@ -20,21 +22,29 @@ export function Dialog() {
     }
   }, [isOpen]);
   const handleFormSubmit = (formData) => {
-    const data = {
-      title: formData.get("title"),
-      type: formData.get("type"),
-      description:
-        formData.get("description") || "This task has no description.",
-    };
-    if (targetTask) {
-      dispatch(
-        editTask({
-          id: targetTask.id,
-          ...data,
-        }),
-      );
+    if (targetTask?.task_id) {
+      const data = {
+        title: formData.get("title"),
+        task_id: targetTask.task_id,
+      };
+      dispatch(addStep(data));
     } else {
-      dispatch(addTask(data));
+      const data = {
+        title: formData.get("title"),
+        type: formData.get("type"),
+        description:
+          formData.get("description") || "This task has no description.",
+      };
+      if (targetTask) {
+        dispatch(
+          editTask({
+            id: targetTask.id,
+            ...data,
+          }),
+        );
+      } else {
+        dispatch(addTask(data));
+      }
     }
     dispatch(closeDialog());
   };
@@ -43,7 +53,11 @@ export function Dialog() {
       <dialog className={styles.dialog} ref={dialogRef}>
         <div className={styles.header}>
           <h2 className={styles.heading}>
-            {targetTask ? "Edit Task" : "Add Task"}
+            {targetTask?.task_id
+              ? "Add Step"
+              : targetTask
+                ? "Edit Task"
+                : "Add Task"}
           </h2>
           <button
             className={styles.btn}
@@ -53,14 +67,19 @@ export function Dialog() {
           </button>
         </div>
         <div className={styles.body}>
-          {isOpen && (
+          {isOpen && !targetTask?.task_id ? (
             <FormTask
               onSubmit={handleFormSubmit}
               taskTitle={targetTask?.title}
               taskType={targetTask?.type}
               taskDescription={targetTask?.description}
             />
-          )}
+          ) : isOpen && targetTask?.task_id ? (
+            <FormStep
+              onSubmit={handleFormSubmit}
+              taskId={targetTask?.task_id}
+            />
+          ) : null}
         </div>
       </dialog>
     </>

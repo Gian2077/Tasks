@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  openDialog,
-  closeDialog,
-  resetTasks,
-} from "./store/slices/tasks/taskSlice.js";
+import { openDialog } from "./store/slices/tasks/taskSlice.js";
 import { checkCompleted, fetchTasks } from "./store/slices/tasks/taskThunks.js";
 import { fetchSteps } from "./store/slices/steps/stepThunks.js";
 import "./App.css";

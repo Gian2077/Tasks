@@ -14,4 +14,5 @@ store.subscribe(() => {
   localStorage.setItem("tasks", JSON.stringify(state.tasks.tasks));
   localStorage.setItem("steps", JSON.stringify(state.steps.steps));
   localStorage.setItem("nextId", JSON.stringify(state.tasks.nextId));
+  localStorage.setItem("nextStepId", JSON.stringify(state.steps.nextId));
 });

@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
-import { toggleStep } from "../../store/slices/steps/stepSlice";
+import { toggleStep, deleteStep } from "../../store/slices/steps/stepSlice";
 import { ButtonStepToggleStatus } from "../ButtonStepToggleStatus";
 import styles from "./Step.module.css";
+import { ButtonStepDelete } from "../ButtonStepDelete";
 export function Step({ step }) {
   const dispatch = useDispatch();
   return (
@@ -15,6 +16,7 @@ export function Step({ step }) {
             onClick={() => dispatch(toggleStep(step))}
             step={step}
           />
+          <ButtonStepDelete onClick={() => dispatch(deleteStep(step.id))} />
         </div>
       </li>
     </>

@@ -1,4 +1,4 @@
-import { use, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   openDialog,
@@ -15,8 +15,6 @@ export function Task({ task }) {
   const steps = useSelector((state) =>
     state.steps.steps.filter((step) => step.task_id === task.id),
   );
-  const showDialog = useSelector((state) => state.tasks.showDialog);
-  const targetTask = useSelector((state) => state.tasks.targetTask);
   const taskRef = useRef(null);
   const textRef = useRef(null);
   const [isOverflowing, setIsOverflowing] = useState(false);

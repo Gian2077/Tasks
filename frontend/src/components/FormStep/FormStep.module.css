@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.form label {
+  font-weight: 700;
+}
+.form input {
+  background-color: #333;
+  border: none;
+  border-radius: 0.1rem;
+  flex: 1;
+  outline: none;
+  padding: 0.5rem 0.75rem;
+  transition: ease-in-out 0.3s;
+}
+.btn {
+  background-color: #333;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-weight: 700;
+  outline: none;
+  padding: 0.5rem 1rem;
+  transition: ease-in-out 0.3s;
+}
+.form input:hover,
+.btn:hover {
+  background-color: #555;
+  transition: ease-in-out 0.3s;
+}
+.form input:focus,
+.btn:focus {
+  box-shadow: 0 0 0 0.1rem #ccc;
+  transition: ease-in-out 0.3s;
+}

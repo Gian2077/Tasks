@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
+  openDialog,
   completeTask,
   uncompleteTask,
 } from "../../store/slices/tasks/taskSlice";
 import styles from "./Steps.module.css";
 import { Step } from "../Step";
+import { ButtonStepAdd } from "../ButtonStepAdd";
 
 export function Steps({ steps }) {
   const dispatch = useDispatch();
+
   const allCompleted =
     steps.length > 0 && steps.every((step) => step.completed);
   useEffect(() => {
@@ -19,12 +22,17 @@ export function Steps({ steps }) {
     }
   }, [allCompleted, dispatch]);
   return (
-    <>
+    <div className={styles.steps}>
       <ol className={styles.ol}>
         {steps.map((step) => {
           return <Step key={step.id} step={step} />;
         })}
       </ol>
-    </>
+      <ButtonStepAdd
+        onClick={() => {
+          dispatch(openDialog(steps[0]));
+        }}
+      />
+    </div>
   );
 }

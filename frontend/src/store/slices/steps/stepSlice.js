@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { resetTasks } from "../tasks/taskSlice";
 import { fetchSteps } from "./stepThunks";
 const savedSteps = localStorage.getItem("steps");
 const initialState = {
   steps: savedSteps ? JSON.parse(savedSteps) : [],
+  nextId: savedSteps ? JSON.parse(localStorage.getItem("nextStepId")) : 1,
   loading: false,
   error: null,
 };
@@ -11,10 +11,22 @@ const stepSlice = createSlice({
   name: "steps",
   initialState,
   reducers: {
+    addStep(state, action) {
+      const step = {
+        id: state.nextId,
+        completed: false,
+        ...action.payload,
+      };
+      state.steps.push(step);
+      state.nextId++;
+    },
     toggleStep(state, action) {
       const step = state.steps.find((s) => s.id === action.payload.id);
       if (!step) return;
       step.completed = !step.completed;
+    },
+    deleteStep(state, action) {
+      state.steps = state.steps.filter((step) => step.id !== action.payload);
     },
     resetSteps(state, action) {
       const taskIds = action.payload;
@@ -34,8 +46,8 @@ const stepSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchSteps.fulfilled, (state, action) => {
-        state.loading = false;
-        state.steps = action.payload;
+        state.steps = action.payload.steps;
+        state.nextId = action.payload.nextId;
       })
       .addCase(fetchSteps.rejected, (state, action) => {
         state.loading = false;
@@ -43,5 +55,6 @@ const stepSlice = createSlice({
       });
   },
 });
-export const { toggleStep, resetSteps } = stepSlice.actions;
+export const { addStep, toggleStep, deleteStep, resetSteps } =
+  stepSlice.actions;
 export default stepSlice.reducer;
