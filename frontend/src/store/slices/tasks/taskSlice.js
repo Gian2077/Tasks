@@ -41,13 +41,13 @@ const taskSlice = createSlice({
     },
     completeTask(state, action) {
       const task = state.tasks.find((t) => t.id === action.payload.id);
-      if (!task) return;
+      if (!task || task.completed) return;
       task.completed = true;
       task.dateCompleted = new Date().toISOString();
     },
     uncompleteTask(state, action) {
       const task = state.tasks.find((t) => t.id === action.payload.id);
-      if (!task) return;
+      if (!task || !task.completed) return;
       task.completed = false;
       task.dateCompleted = null;
     },
