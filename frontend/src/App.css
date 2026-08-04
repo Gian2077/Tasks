@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  color: #ccc;
+}
+#root {
+  background-color: #000;
+  display: grid;
+  font-family: "Inter", sans-serif;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  max-width: 100%;
+  overflow: hidden;
+  width: 100vw;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fff;
+  font-weight: 700;
+}
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
