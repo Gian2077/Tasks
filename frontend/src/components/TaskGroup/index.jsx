@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { EmptyState } from "../EmptyState";
 import { Task } from "../Task";
 import { Tasks } from "../Tasks";
-import styles from "./TaskList.module.css";
-export function TaskList({ title, type }) {
+import styles from "./TaskGroup.module.css";
+export function TaskGroup({ title, type }) {
   const tasks = useSelector((state) =>
     state.tasks.tasks.filter((task) => task.type === type),
   );

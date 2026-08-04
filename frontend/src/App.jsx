@@ -13,7 +13,7 @@ import { Main } from "./components/Main";
 import { Dialog } from "./components/Dialog";
 import { ButtonFAB } from "./components/ButtonFAB";
 import { Footer } from "./components/Footer";
-import { TaskList } from "./components/TaskList/index.jsx";
+import { TaskGroup } from "./components/TaskGroup/index.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function App() {
       <Header />
       <Main>
         {lists.map((list) => (
-          <TaskList
+          <TaskGroup
             title={`${list} Tasks`}
             type={list}
             key={lists.indexOf(list)}
