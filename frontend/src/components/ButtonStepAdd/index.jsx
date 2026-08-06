@@ -1,8 +1,11 @@
 import styles from "./ButtonStepAdd.module.css";
-export function ButtonStepAdd({ onClick }) {
+export function ButtonStepAdd({ onClick, firstStep }) {
   return (
-    <button className={styles.button} onClick={onClick}>
-      <i className="bi bi-plus"></i>
+    <button
+      className={firstStep ? styles.btn : styles.button}
+      onClick={onClick}
+    >
+      {firstStep ? "Add First Step" : <i className="bi bi-plus"></i>}
     </button>
   );
 }

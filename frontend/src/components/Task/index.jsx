@@ -10,6 +10,7 @@ import { ButtonTaskToggleStatus } from "../ButtonTaskToggleStatus/index.jsx";
 import { ButtonTaskEdit } from "../ButtonTaskEdit/index.jsx";
 import { ButtonTaskDelete } from "../ButtonTaskDelete/index.jsx";
 import { Steps } from "../Steps/index.jsx";
+import { ButtonStepAdd } from "../ButtonStepAdd/index.jsx";
 export function Task({ task }) {
   const dispatch = useDispatch();
   const steps = useSelector((state) =>
@@ -70,6 +71,14 @@ export function Task({ task }) {
           </summary>
           <p>{task.description}</p>
           {steps.length > 0 && <Steps steps={steps} />}
+          {steps.length === 0 && (
+            <div className={styles.wrapper}>
+              <ButtonStepAdd
+                onClick={() => dispatch(openDialog({ task_id: task.id }))}
+                firstStep={steps.length === 0}
+              />
+            </div>
+          )}
         </details>
       </li>
     </>

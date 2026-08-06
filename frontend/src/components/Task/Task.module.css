@@ -4,10 +4,15 @@
 }
 .details {
   background-color: #222;
+  display: flex;
+  flex-direction: column;
 }
 .details p {
   font-size: 0.75rem;
   padding: 1rem;
+}
+.ButtonStepAdd {
+  background-color: red;
 }
 .details[open] {
   border-radius: 0 0 0.3rem 0.3rem;
@@ -39,6 +44,9 @@
 }
 .wrapper:nth-child(1) {
   cursor: pointer;
+}
+.wrapper:last-child {
+  justify-content: center;
 }
 .title {
   min-width: 0;
