@@ -20,6 +20,21 @@
   height: 2rem;
   overflow-x: hidden;
 }
+.title {
+  min-width: 0;
+  white-space: nowrap;
+}
+.li:hover .overflowing {
+  animation: scroll-text var(--animation-speed) linear infinite;
+}
 .completed {
   background-color: #00ff00;
+}
+@keyframes scroll-text {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--overflow-width));
+  }
 }
