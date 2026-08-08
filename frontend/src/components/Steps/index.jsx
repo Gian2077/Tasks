@@ -30,7 +30,7 @@ export function Steps({ steps }) {
       </ol>
       <ButtonStepAdd
         onClick={() => {
-          dispatch(openDialog(steps[0]));
+          dispatch(openDialog({ task_id: steps[0].task_id }));
         }}
       />
     </div>

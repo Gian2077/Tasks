@@ -25,6 +25,11 @@ const stepSlice = createSlice({
       if (!step) return;
       step.completed = !step.completed;
     },
+    editStep(state, action) {
+      const step = state.steps.find((s) => s.id === action.payload.id);
+      if (!step) return;
+      step.title = action.payload.title;
+    },
     deleteStep(state, action) {
       state.steps = state.steps.filter((step) => step.id !== action.payload);
     },
@@ -55,6 +60,6 @@ const stepSlice = createSlice({
       });
   },
 });
-export const { addStep, toggleStep, deleteStep, resetSteps } =
+export const { addStep, toggleStep, editStep, deleteStep, resetSteps } =
   stepSlice.actions;
 export default stepSlice.reducer;

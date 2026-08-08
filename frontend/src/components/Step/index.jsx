@@ -1,9 +1,11 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { openDialog } from "../../store/slices/tasks/taskSlice.js";
 import { toggleStep, deleteStep } from "../../store/slices/steps/stepSlice";
 import { ButtonStepToggleStatus } from "../ButtonStepToggleStatus";
 import styles from "./Step.module.css";
 import { ButtonStepDelete } from "../ButtonStepDelete";
+import { ButtonStepEdit } from "../ButtonStepEdit";
 export function Step({ step }) {
   const dispatch = useDispatch();
   const stepRef = useRef(null);
@@ -51,6 +53,7 @@ export function Step({ step }) {
             onClick={() => dispatch(toggleStep(step))}
             step={step}
           />
+          <ButtonStepEdit onClick={() => dispatch(openDialog(step))} />
           <ButtonStepDelete onClick={() => dispatch(deleteStep(step.id))} />
         </div>
       </li>

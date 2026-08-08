@@ -5,7 +5,7 @@ import {
   addTask,
   editTask,
 } from "../../store/slices/tasks/taskSlice.js";
-import { addStep } from "../../store/slices/steps/stepSlice.js";
+import { addStep, editStep } from "../../store/slices/steps/stepSlice.js";
 import styles from "./Dialog.module.css";
 import { FormTask } from "../FormTask/index.jsx";
 import { FormStep } from "../FormStep/index.jsx";
@@ -23,11 +23,20 @@ export function Dialog() {
   }, [isOpen]);
   const handleFormSubmit = (formData) => {
     if (targetTask?.task_id) {
-      const data = {
-        title: formData.get("title"),
-        task_id: targetTask.task_id,
-      };
-      dispatch(addStep(data));
+      if (targetTask?.title) {
+        const data = {
+          id: targetTask.id,
+          title: formData.get("title"),
+          task_id: targetTask.task_id,
+        };
+        dispatch(editStep(data));
+      } else {
+        const data = {
+          title: formData.get("title"),
+          task_id: targetTask.task_id,
+        };
+        dispatch(addStep(data));
+      }
     } else {
       const data = {
         title: formData.get("title"),
@@ -54,7 +63,9 @@ export function Dialog() {
         <div className={styles.header}>
           <h2 className={styles.heading}>
             {targetTask?.task_id
-              ? "Add Step"
+              ? targetTask?.title
+                ? "Edit Step"
+                : "Add Step"
               : targetTask
                 ? "Edit Task"
                 : "Add Task"}
@@ -78,6 +89,7 @@ export function Dialog() {
             <FormStep
               onSubmit={handleFormSubmit}
               taskId={targetTask?.task_id}
+              stepTitle={targetTask?.title}
             />
           ) : null}
         </div>
