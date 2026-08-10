@@ -4,8 +4,6 @@ const savedTasks = localStorage.getItem("tasks");
 const initialState = {
   tasks: savedTasks ? JSON.parse(savedTasks) : [],
   nextId: savedTasks ? JSON.parse(localStorage.getItem("nextId")) : 1,
-  showDialog: false,
-  targetTask: null,
   loading: false,
   error: null,
 };
@@ -13,14 +11,6 @@ const taskSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    openDialog(state, action) {
-      state.showDialog = true;
-      state.targetTask = action.payload ?? null;
-    },
-    closeDialog(state) {
-      state.showDialog = false;
-      state.targetTask = null;
-    },
     addTask(state, action) {
       const task = {
         id: state.nextId,

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { openDialog } from "./store/slices/tasks/taskSlice.js";
+// import { openDialog } from "./store/slices/tasks/taskSlice.js";
+import { openDialog } from "./store/slices/dialog/dialogSlice.js";
 import { checkCompleted, fetchTasks } from "./store/slices/tasks/taskThunks.js";
 import { fetchSteps } from "./store/slices/steps/stepThunks.js";
 import "./App.css";
@@ -13,8 +14,8 @@ import { TaskGroup } from "./components/TaskGroup/index.jsx";
 
 function App() {
   const dispatch = useDispatch();
-  const showDialog = useSelector((state) => state.tasks.showDialog);
-  const lists = ["Daily", "Weekly", "Monthly", "Yearly"];
+  const showDialog = useSelector((state) => state.dialog.showDialog);
+  const groups = ["Daily", "Weekly", "Monthly", "Yearly"];
   useEffect(() => {
     dispatch(fetchTasks());
     dispatch(fetchSteps());
@@ -24,11 +25,11 @@ function App() {
     <>
       <Header />
       <Main>
-        {lists.map((list) => (
+        {groups.map((group) => (
           <TaskGroup
-            title={`${list} Tasks`}
-            type={list}
-            key={lists.indexOf(list)}
+            title={`${group} Tasks`}
+            type={group}
+            key={groups.indexOf(group)}
           />
         ))}
         <Dialog />

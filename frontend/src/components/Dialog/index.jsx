@@ -1,18 +1,15 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  closeDialog,
-  addTask,
-  editTask,
-} from "../../store/slices/tasks/taskSlice.js";
+import { addTask, editTask } from "../../store/slices/tasks/taskSlice.js";
+import { closeDialog } from "../../store/slices/dialog/dialogSlice.js";
 import { addStep, editStep } from "../../store/slices/steps/stepSlice.js";
 import styles from "./Dialog.module.css";
 import { FormTask } from "../FormTask/index.jsx";
 import { FormStep } from "../FormStep/index.jsx";
 export function Dialog() {
   const dispatch = useDispatch();
-  const isOpen = useSelector((state) => state.tasks.showDialog);
-  const targetTask = useSelector((state) => state.tasks.targetTask);
+  const isOpen = useSelector((state) => state.dialog.showDialog);
+  const targetTask = useSelector((state) => state.dialog.targetTask);
   const dialogRef = useRef(null);
   useEffect(() => {
     if (isOpen) {

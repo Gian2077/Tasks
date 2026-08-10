@@ -1,10 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  openDialog,
-  toggleTask,
-  deleteTask,
-} from "../../store/slices/tasks/taskSlice.js";
+import { toggleTask, deleteTask } from "../../store/slices/tasks/taskSlice.js";
+import { openDialog } from "../../store/slices/dialog/dialogSlice.js";
 import styles from "./Task.module.css";
 import { ButtonTaskToggleStatus } from "../ButtonTaskToggleStatus/index.jsx";
 import { ButtonTaskEdit } from "../ButtonTaskEdit/index.jsx";

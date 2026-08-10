@@ -1,17 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
-  openDialog,
   completeTask,
   uncompleteTask,
 } from "../../store/slices/tasks/taskSlice";
+import { openDialog } from "../../store/slices/dialog/dialogSlice.js";
 import styles from "./Steps.module.css";
 import { Step } from "../Step";
 import { ButtonStepAdd } from "../ButtonStepAdd";
-
 export function Steps({ steps }) {
   const dispatch = useDispatch();
-
   const allCompleted =
     steps.length > 0 && steps.every((step) => step.completed);
   useEffect(() => {

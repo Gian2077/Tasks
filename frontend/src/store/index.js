@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import taskReducer from "./slices/tasks/taskSlice";
 import stepReducer from "./slices/steps/stepSlice";
 import dateReducer from "./slices/date/dateSlice";
+import dialogReducer from "./slices/dialog/dialogSlice";
 export const store = configureStore({
   reducer: {
     tasks: taskReducer,
     steps: stepReducer,
     date: dateReducer,
+    dialog: dialogReducer,
   },
 });
 store.subscribe(() => {

@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { openDialog } from "../../store/slices/tasks/taskSlice.js";
+import { openDialog } from "../../store/slices/dialog/dialogSlice.js";
 import { toggleStep, deleteStep } from "../../store/slices/steps/stepSlice";
 import { ButtonStepToggleStatus } from "../ButtonStepToggleStatus";
 import styles from "./Step.module.css";

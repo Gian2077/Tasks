@@ -5,18 +5,9 @@ import { Task } from ".";
 import styles from "./Task.module.css";
 const testStore = configureStore({
   reducer: {
-    tasks: (
-      state = {
-        showDialog: false,
-        targetTask: null,
-      },
-    ) => state,
-
-    steps: (
-      state = {
-        steps: [],
-      },
-    ) => state,
+    tasks: (state = {}) => state,
+    steps: (state = { steps: [] }) => state,
+    dialog: (state = { showDialog: false, targetTask: null }) => state,
   },
 });
 describe("Task", () => {
