@@ -23,6 +23,23 @@ It also serves as a portfolio project that showcases my ability to design, build
 Tasks/
 ├── frontend/
 │   ├── src/
+│   │   ├── api/
+│   │   │   ├── axios.js
+│   │   │   ├── taskService.js
+│   │   │   └── stepService.js
+│   │   ├── store/
+│   │   │   ├── slices/
+│   │   │   │   ├── date/
+│   │   │   │   │   └── dateSlice.js
+│   │   │   │   ├── dialog/
+│   │   │   │   │   └── dialogSlice.js
+│   │   │   │   ├── tasks/
+│   │   │   │   │   ├── taskSlice.js
+│   │   │   │   │   └── taskThunks.js
+│   │   │   │   └── steps/
+│   │   │   │       ├── stepSlice.js
+│   │   │   │       └── stepThunks.js
+│   │   │   └── index.js
 │   │   ├── components/
 │   │   │   ├── Header/
 │   │   │   │   ├── index.jsx
@@ -38,7 +55,8 @@ Tasks/
 │   │   │   │   └── Tasks.module.css
 │   │   │   ├── Task/
 │   │   │   │   ├── index.jsx
-│   │   │   │   └── Task.module.css
+│   │   │   │   ├── Task.module.css
+│   │   │   │   └── Task.spec.jsx
 │   │   │   ├── EmptyState/
 │   │   │   │   ├── index.jsx
 │   │   │   │   └── EmptyState.module.css
@@ -63,13 +81,9 @@ Tasks/
 │   │   │   └── Footer/
 │   │   │       ├── index.jsx
 │   │   │       └── Footer.module.css
-│   │   ├── context/
-│   │   │   ├── DateContext.js
-│   │   │   └── TaskContext.js
-│   │   ├── providers/
-│   │   │   ├── index.jsx
-│   │   │   ├── DateProvider.jsx
-│   │   │   └── TaskProvider.jsx
+│   │   ├── utils/
+│   │   │   ├── recurrenceUtils.js
+│   │   │   └── recurrenceUtils.spec.js
 │   │   ├── index.css
 │   │   ├── main.jsx
 │   │   ├── App.jsx
@@ -77,7 +91,69 @@ Tasks/
 │   ├── index.html
 │   ├── package.json
 │   ├── package-lock.json
-│   └── vite.config.js
+│   ├── babel.config.json
+│   ├── jest.config.json
+│   ├── setupTests.js
+│   ├── vite.config.js
+│   └── coverage/
+│       ├── Icov-report/
+│       │   ├── api/
+│       │   │   ├── axios.js.html
+│       │   │   ├── index.html
+│       │   │   ├── stepService.js.html
+│       │   │   └── taskService.js.html
+│       │   ├── components/
+│       │   │   ├── Task/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   ├── Steps/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   ├── Step/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   ├── ButtonTaskToggle/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   ├── ButtonTaskEdit/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   ├── ButtonTaskDelete/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   ├── ButtonStepAdd/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   ├── ButtonStepToggle/
+│       │   │   │   ├── index.html
+│       │   │   │   └── index.jsx.html
+│       │   │   └── ButtonStepDelete/
+│       │   │       ├── index.html
+│       │   │       └── index.jsx.html
+│       │   ├── store/
+│       │   │   └── slices/
+│       │   │       ├── tasks/
+│       │   │       │   ├── index.html
+│       │   │       │   ├── taskSlice.js.html
+│       │   │       │   └── taskThunks.js.html
+│       │   │       └── steps/
+│       │   │           ├── index.html
+│       │   │           ├── stepSlice.js.html
+│       │   │           └── stepThunks.js.html
+│       │   ├── utils/
+│       │   │   ├── index.html
+│       │   │   └── recurrenceUtils.js.html
+│       │   ├── base.css
+│       │   ├── block-navigation.js
+│       │   ├── favicon.png
+│       │   ├── index.html
+│       │   ├── prettify.css
+│       │   ├── prettify.js
+│       │   ├── sort-arrow-sprite.png
+│       │   └── sorter.js
+│       ├── clover.xml
+│       ├── coverage-final.json
+│       └── Icov.info
 ├── backend/
 │   ├── src/
 │   │   ├── main/
@@ -86,18 +162,23 @@ Tasks/
 │   │   │   │       └── gian2077/
 │   │   │   │           └── tasks_api/
 │   │   │   │               ├── controller/
-│   │   │   │               │   └── TaskController.java
+│   │   │   │               │   ├── TaskController.java
+│   │   │   │               │   └── StepController.java
 │   │   │   │               ├── service/
-│   │   │   │               │   └── TaskService.java
+│   │   │   │               │   ├── TaskService.java
+│   │   │   │               │   └── StepService.java
 │   │   │   │               ├── repository/
 │   │   │   │               │   ├── TypeRepository.java
-│   │   │   │               │   └── TaskRepository.java
+│   │   │   │               │   ├── TaskRepository.java
+│   │   │   │               │   └── StepRepository.java
 │   │   │   │               ├── model/
 │   │   │   │               │   ├── Type.java
-│   │   │   │               │   └── Task.java
+│   │   │   │               │   ├── Task.java
+│   │   │   │               │   └── Step.java
 │   │   │   │               ├── dto/
 │   │   │   │               │   ├── TaskRequestDTO.java
-│   │   │   │               │   └── TaskResponseDTO.java
+│   │   │   │               │   ├── TaskResponseDTO.java
+│   │   │   │               │   └── StepResponseDTO.java
 │   │   │   │               ├── config/
 │   │   │   │               │   └── CorsConfiguration.java
 │   │   │   │               └── TasksApiApplication.java
@@ -111,7 +192,8 @@ Tasks/
 │   │                       └── TasksApiApplicationTests.java
 │   └── pom.xml
 ├── database/
-│   └── V1__init.sql
+│   ├── V1__init.sql
+│   └── V2__create_step_table
 ├── docs/
 │   └── Software Requirements Specification.md
 └── README.md
