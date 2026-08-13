@@ -15,6 +15,7 @@ const stepSlice = createSlice({
       const step = {
         id: state.nextId,
         completed: false,
+        dateCompleted: null,
         ...action.payload,
       };
       state.steps.push(step);
@@ -24,6 +25,7 @@ const stepSlice = createSlice({
       const step = state.steps.find((s) => s.id === action.payload.id);
       if (!step) return;
       step.completed = !step.completed;
+      step.dateCompleted = step.completed ? new Date().toISOString() : null;
     },
     editStep(state, action) {
       const step = state.steps.find((s) => s.id === action.payload.id);
@@ -34,13 +36,10 @@ const stepSlice = createSlice({
       state.steps = state.steps.filter((step) => step.id !== action.payload);
     },
     resetSteps(state, action) {
-      const taskIds = action.payload;
+      const stepIds = action.payload;
       state.steps = state.steps.map((step) =>
-        taskIds.includes(step.task_id)
-          ? {
-              ...step,
-              completed: false,
-            }
+        stepIds.includes(step.id)
+          ? { ...step, completed: false, dateCompleted: null }
           : step,
       );
     },

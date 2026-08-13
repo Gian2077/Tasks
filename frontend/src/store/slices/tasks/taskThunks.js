@@ -18,10 +18,30 @@ export const checkCompleted = createAsyncThunk(
   async (_, { dispatch, getState }) => {
     const state = getState();
     const { DAY, DAY_WEEK, MONTH, YEAR } = state.date;
+    const tasksById = Object.fromEntries(
+      state.tasks.tasks.map((task) => [task.id, task]),
+    );
     const resetTaskIds = state.tasks.tasks
       .filter((task) => shouldReset(task, DAY, DAY_WEEK, MONTH, YEAR))
       .map((task) => task.id);
-    dispatch(resetSteps(resetTaskIds));
+    const resetStepIds = state.steps.steps
+      .filter((step) => {
+        const parentTask = tasksById[step.task_id];
+        if (!parentTask) return false;
+        return shouldReset(
+          {
+            completed: step.completed,
+            dateCompleted: step.dateCompleted,
+            type: parentTask.type,
+          },
+          DAY,
+          DAY_WEEK,
+          MONTH,
+          YEAR,
+        );
+      })
+      .map((step) => step.id);
+    dispatch(resetSteps(resetStepIds));
     dispatch(resetTasks(resetTaskIds));
   },
 );
