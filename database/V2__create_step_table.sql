@@ -8,22 +8,29 @@ CREATE TABLE step (
 INSERT INTO step(title, task_id)
 VALUES
     -- Eat Snacks
-    ('Eat Chips', 7), 
-    ('Eat Chocolate', 7), 
+    ('Eat chips', 7), 
+    ('Eat chocolate', 7), 
     ('Drink Monster Energy Drink', 7), 
     -- Brush Teeth
-    ('After Breakfast', 9), 
-    ('After Lunch', 9), 
-    ('After Dinner', 9), 
+    ('After breakfast', 9), 
+    ('After lunch', 9), 
+    ('After dinner', 9), 
     -- Exercise
-    ('Do 10 Push-ups', 13), 
-    ('Do 10 Crunches', 13), 
-    ('Do 10 Squats', 13), 
+    ('Do 10 push-ups', 14), 
+    ('Do 10 crunches', 14), 
+    ('Do 10 squats', 14), 
     -- Wash the Dishes
-    ('After Lunch', 18), 
-    ('After Dinner', 18), 
+    ('After lunch', 21), 
+    ('After dinner', 21), 
     -- Clean the House
-    ('Clean the Kitchen', 22), 
-    ('Clean the Living Room', 22), 
-    ('Clean the Bathroom', 22), 
-    ('Clean the Laundry Room', 22);
+    ('Clean the kitchen', 26), 
+    ('Clean the living room', 26), 
+    ('Clean the bathroom', 26), 
+    ('Clean the laundry room', 26), 
+    -- Buy Video Games
+    ('Buy a PlayStation 1 Video Game', 35), 
+    ('Buy a PlayStation 2 Video Game', 35), 
+    ('Buy a PlayStation 3 Video Game', 35), 
+    ('Buy a PlayStation 4 Video Game', 35), 
+    ('Buy a PlayStation 5 Video Game', 35), 
+    ('Buy a Nintendo Switch Video Game', 35); 

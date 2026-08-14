@@ -28,20 +28,25 @@ VALUES
     ('Eat Snacks', NULL, 2), 
     -- Hygiene
     ('Shower', NULL, 1), 
-    ('Brush Teeth', "Brush teeth after each meal.", 1), 
+    ('Brush Teeth', 'Brush teeth after each meal.', 1), 
     ('Cut Hair', NULL, 3), 
     ('Trim Beard', NULL, 2), 
+    ('Trim Body Hair', NULL, 3), 
     ('Trim Nails', NULL, 3), 
     -- Exercise
-    ('Exercise', 'Do 10 push-ups, 10 crunches and 10 squats.', 1), 
+    ('Exercise', NULL, 1), 
     ('Go for a Walk', NULL, 1), 
     ('Go for a Run', 'Run 1 kilometer.', 2), 
     ('Go to the Gym', NULL, 1), 
+    -- Appearance
+    ('Get Your Hair Done', NULL, 4), 
+    ('Get a Tattoo', NULL, 4), 
     -- House Chores
     ('Make the Bed', NULL, 1), 
     ('Wash the Dishes', NULL, 1), 
     ('Do the Laundry', NULL, 2), 
     ('Iron Clothes', NULL, 2), 
+    ('Clean Shoes', NULL, 2), 
     ('Clean Your Room', NULL, 3), 
     ('Clean the House', NULL, 3), 
     ('Take Out the Trash', NULL, 2), 
@@ -49,21 +54,9 @@ VALUES
     -- Cooking
     ('Make Rice', NULL, 2), 
     ('Make Beans', NULL, 2), 
+    ('Make Curry', NULL, 4), 
     -- Education
-    ('Study English', 'Do 1 english lesson at Duolingo.', 2), 
-    ('Study Math', 'Do 1 math lesson at Duolingo.', 2), 
-    ('Study HTML', NULL, 4), 
-    ('Study CSS', NULL, 4), 
-    ('Study JavaScript', NULL, 4), 
-    ('Study React', NULL, 4), 
-    ('Study Tailwind CSS', NULL, 4), 
-    ('Study TypeScript', NULL, 4), 
-    ('Study Java', NULL, 4), 
-    ('Study Spring Boot', NULL, 4), 
-    ('Study SQL', NULL, 4), 
-    ('Study PostgreSQL', NULL, 4), 
-    ('Study Git', NULL, 4), 
-    ('Study', 'Go to College.', 1), 
+    ('Study', NULL, 1), 
     -- Work
     ('Go to Work', NULL, 1), 
     -- Shopping
@@ -72,17 +65,22 @@ VALUES
     ('Buy Books', NULL, 4), 
     ('Buy Comic Books', NULL, 3), 
     ('Buy Manga', NULL, 3), 
+    ('Buy Records', NULL, 4), 
+    ('Buy Model Kits', NULL, 4), 
     -- Hobbies
-    ('Play Video Game', NULL, 1), 
-    ('Play a Board Game', NULL, 4), 
-    ('Watch a Cartoon', 'Watch 1 episode of a cartoon.', 1), 
+    ('Play Video Games', NULL, 1), 
+    ('Play Board Games', NULL, 4), 
+    ('Play Trading Card Games', 'Play Pokémon Trading Card Game.', 2), 
+    ('Play Chess', NULL, 4), 
+    ('Watch Cartoons', 'Watch 1 episode of a cartoon.', 2), 
     ('Watch Anime', 'Watch 1 episode of an anime.', 2), 
-    ('Watch a Movie', 'Watch 1 movie.', 3), 
-    ('Watch a TV Show', 'Watch 1 episode of a TV show.', 1), 
+    ('Watch Movies', 'Watch 1 movie.', 3), 
+    ('Watch TV Shows', 'Watch 1 episode of a TV show.', 2), 
     ('Listen to Music', NULL, 1), 
-    ('Read a Book', 'Read 1 chapter of a book.', 1), 
-    ('Read a Comic Book', 'Read 1 issue of a comic book.', 3), 
+    ('Read Books', 'Read 1 chapter of a book.', 1), 
+    ('Read Comic Books', 'Read 1 issue of a comic book.', 3), 
     ('Read Manga', 'Read 1 volume of a manga.', 3), 
+    ('Build Model Kits', 'Build 1 model kit.', 4), 
     -- Outings
     ('Go Out', NULL, 3), 
     ('Go to the Theater', 'Watch a movie at the theater.', 4), 
@@ -96,9 +94,7 @@ VALUES
     ('Go Out with a Friend', NULL, 4), 
     ('Gift Your Mother', NULL, 4), 
     ('Gift Your Father', NULL, 4), 
-    ('Gift a Friend', NULL, 4), 
-    ('Meet New People', 'Strike a conversation with someone you think you might get along with.', 4); 
-
+    ('Gift a Friend', NULL, 4); 
 SELECT * FROM task;
 SELECT * FROM task WHERE type_id = 1;
 SELECT * FROM task WHERE type_id = 2;
