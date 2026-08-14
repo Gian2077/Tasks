@@ -310,11 +310,7 @@ npm run dev
 
 ## Resources
 
-### Software Requirements Specification
-
-- [Version 1.0](https://github.com/Gian2077/Tasks/blob/main/docs/Software%20Requirements%20Specification%20v1.md)
-- [Version 2.0](https://github.com/Gian2077/Tasks/blob/main/docs/Software%20Requirements%20Specification%20v2.md)
-- [Version 3.0](https://github.com/Gian2077/Tasks/blob/main/docs/Software%20Requirements%20Specification%20v3.md)
+### [Software Requirements Specification](https://github.com/Gian2077/Tasks/blob/main/docs/Software%20Requirements%20Specification.md)
 
 ## Support
 
