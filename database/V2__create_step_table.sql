@@ -27,10 +27,3 @@ VALUES
     ('Clean the living room', 26), 
     ('Clean the bathroom', 26), 
     ('Clean the laundry room', 26), 
-    -- Buy Video Games
-    ('Buy a PlayStation 1 Video Game', 35), 
-    ('Buy a PlayStation 2 Video Game', 35), 
-    ('Buy a PlayStation 3 Video Game', 35), 
-    ('Buy a PlayStation 4 Video Game', 35), 
-    ('Buy a PlayStation 5 Video Game', 35), 
-    ('Buy a Nintendo Switch Video Game', 35); 
