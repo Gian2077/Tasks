@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTask, deleteTask } from "../../store/slices/tasks/taskSlice.js";
+import { deleteTask } from "../../store/slices/tasks/taskSlice.js";
 import { openDialog } from "../../store/slices/dialog/dialogSlice.js";
+import { toggleTaskWithExp } from "../../store/slices/tasks/taskThunks.js";
 import styles from "./Task.module.css";
 import { ButtonTaskToggleStatus } from "../ButtonTaskToggleStatus/index.jsx";
 import { ButtonTaskEdit } from "../ButtonTaskEdit/index.jsx";
@@ -37,7 +38,7 @@ export function Task({ task }) {
       `${calcOverflow(text) / 30 > 2 ? calcOverflow(text) / 30 : 5}s`,
     );
     window.addEventListener("resize", checkOverflow);
-    return window.removeEventListener("resize", checkOverflow);
+    return () => window.removeEventListener("resize", checkOverflow);
   }, [task.title]);
   return (
     <>
@@ -58,7 +59,7 @@ export function Task({ task }) {
             <div className={styles.actions}>
               {steps.length === 0 && (
                 <ButtonTaskToggleStatus
-                  onClick={() => dispatch(toggleTask(task))}
+                  onClick={() => dispatch(toggleTaskWithExp(task))}
                   task={task}
                 />
               )}
@@ -67,7 +68,7 @@ export function Task({ task }) {
             </div>
           </summary>
           <p>{task.description}</p>
-          {steps.length > 0 && <Steps steps={steps} />}
+          {steps.length > 0 && <Steps task={task} steps={steps} />}
           {steps.length === 0 && (
             <div className={styles.wrapper}>
               <ButtonStepAdd

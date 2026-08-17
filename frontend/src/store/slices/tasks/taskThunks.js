@@ -1,8 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getTasks } from "../../../api/taskService.js";
-import { resetTasks } from "./taskSlice.js";
+import {
+  resetTasks,
+  toggleTask,
+  completeTask,
+  uncompleteTask,
+} from "./taskSlice.js";
 import { shouldReset } from "../../../utils/recurrenceUtils.js";
 import { resetSteps } from "../steps/stepSlice.js";
+import { EXP_PER_TYPE } from "../../../utils/expConstants.js";
+import { addExp } from "../exp/expSlice.js";
 export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
   const response = await getTasks();
   localStorage.setItem("tasks", JSON.stringify(response.data));
@@ -43,5 +50,31 @@ export const checkCompleted = createAsyncThunk(
       .map((step) => step.id);
     dispatch(resetSteps(resetStepIds));
     dispatch(resetTasks(resetTaskIds));
+  },
+);
+export const toggleTaskWithExp = createAsyncThunk(
+  "tasks/toggleTaskWithExp",
+  async (task, { dispatch }) => {
+    const willComplete = !task.completed;
+    dispatch(toggleTask(task));
+    dispatch(
+      addExp(willComplete ? EXP_PER_TYPE[task.type] : -EXP_PER_TYPE[task.type]),
+    );
+  },
+);
+export const completeTaskWithExp = createAsyncThunk(
+  "tasks/completeTaskWithExp",
+  async (task, { dispatch }) => {
+    if (task.completed) return;
+    dispatch(completeTask(task));
+    dispatch(addExp(EXP_PER_TYPE[task.type]));
+  },
+);
+export const uncompleteTaskWithExp = createAsyncThunk(
+  "tasks/uncompleteTaskWithExp",
+  async (task, { dispatch }) => {
+    if (!task.completed) return;
+    dispatch(uncompleteTask(task));
+    dispatch(addExp(-EXP_PER_TYPE[task.type]));
   },
 );

@@ -8,17 +8,21 @@ import { openDialog } from "../../store/slices/dialog/dialogSlice.js";
 import styles from "./Steps.module.css";
 import { Step } from "../Step";
 import { ButtonStepAdd } from "../ButtonStepAdd";
-export function Steps({ steps }) {
+import {
+  completeTaskWithExp,
+  uncompleteTaskWithExp,
+} from "../../store/slices/tasks/taskThunks.js";
+export function Steps({ task, steps }) {
   const dispatch = useDispatch();
   const allCompleted =
     steps.length > 0 && steps.every((step) => step.completed);
   useEffect(() => {
     if (allCompleted) {
-      dispatch(completeTask({ id: steps[0].task_id }));
+      dispatch(completeTaskWithExp({ id: steps[0].task_id }));
     } else {
-      dispatch(uncompleteTask({ id: steps[0].task_id }));
+      dispatch(uncompleteTaskWithExp({ id: steps[0].task_id }));
     }
-  }, [allCompleted, dispatch]);
+  }, [allCompleted, dispatch, task]);
   return (
     <div className={styles.steps}>
       <ol className={styles.ol}>
