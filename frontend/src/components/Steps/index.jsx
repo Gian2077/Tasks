@@ -18,9 +18,9 @@ export function Steps({ task, steps }) {
     steps.length > 0 && steps.every((step) => step.completed);
   useEffect(() => {
     if (allCompleted) {
-      dispatch(completeTaskWithExp({ id: steps[0].task_id }));
+      dispatch(completeTaskWithExp(task));
     } else {
-      dispatch(uncompleteTaskWithExp({ id: steps[0].task_id }));
+      dispatch(uncompleteTaskWithExp(task));
     }
   }, [allCompleted, dispatch, task]);
   return (
